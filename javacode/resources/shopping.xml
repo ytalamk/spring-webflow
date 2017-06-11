@@ -3,13 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+ 	
+ 	<input name="hotelId" />
+
+    <on-start>
+        <evaluate expression="bookingService.start()" />
+    </on-start>
+ 	
 	<view-state id="cart" view="webflow/cart">
-		<transition on="submit" to="order">
+		<transition on="submit" to="cartController">
 		</transition>
 	</view-state>
+	
+	<action-state id="cartController">
+		<evaluate expression="cartController.cart()"></evaluate>
+		<transition to="order"></transition>
+	</action-state>
+	
 	<view-state id="order" view="webflow/order">
-		<transition on="pay" to="confirm">
-		</transition>
+		<transition on="pay" to="confirm"></transition>
+		<transition on="over" to="finish"></transition>
 	</view-state>
 	<view-state id="confirm" view="webflow/confirm">
 		<transition on="end" to="finish">

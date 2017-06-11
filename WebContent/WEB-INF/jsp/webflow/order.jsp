@@ -8,5 +8,6 @@
 <body>
 	<h1>order</h1>
 	<h2><a href="${flowExecutionUrl}&_eventId=pay">去确认支付</a></h2>
+	<h2><a href="${flowExecutionUrl}&_eventId=over">直接结束</a></h2>
 </body>
 </html>
